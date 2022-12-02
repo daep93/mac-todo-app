@@ -1,0 +1,36 @@
+{
+  "name": "vue3-electron-boilerplate",
+  "private": true,
+  "version": "0.0.0",
+  "main": "dist/main/index.cjs",
+  "scripts": {
+    "dev:renderer": "vite packages/renderer",
+    "build:renderer": "vue-tsc -p packages/renderer/tsconfig.json --noEmit && vite build packages/renderer",
+    "build:preload": "tsc -p packages/preload/tsconfig.json --noEmit && vite build packages/preload",
+    "build:main": "tsc -p packages/main/tsconfig.json --noEmit && vite build packages/main",
+    "build": "yarn run build:renderer && yarn run build:preload && yarn run build:main",
+    "start:electron": "electron .",
+    "dev": "cross-env NODE_ENV=development ts-node scripts/dev-server.ts",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
+    "vue": "^3.2.41"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.4",
+    "@electron-forge/maker-deb": "^6.0.4",
+    "@electron-forge/maker-rpm": "^6.0.4",
+    "@electron-forge/maker-squirrel": "^6.0.4",
+    "@electron-forge/maker-zip": "^6.0.4",
+    "@vitejs/plugin-vue": "^3.2.0",
+    "cross-env": "^7.0.3",
+    "electron": "^22.0.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.6.4",
+    "vite": "^3.2.3",
+    "vue-tsc": "^1.0.9"
+  }
+}
