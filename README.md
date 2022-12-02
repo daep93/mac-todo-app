@@ -1,16 +1,9 @@
-# Vue 3 + TypeScript + Vite
+# Vue3 + Vite + TypeScript + Electron
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Vite를 활용하여 Vue와 Electron을 결합한 보일러플레이트를 구성하였습니다.
 
-## Recommended IDE Setup
+`yarn run build`를 통해 electron의 main 프로세스와 preload, vue로 작성한 앱을 빌드할 수 있으며 `yarn run start`를 통해 빌드 결과물을 실행 해볼 수 있습니다.
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+hot-reload를 위해서 `yarn run dev` 명령어도 준비했습니다만 vue 앱에 수정 사항은 감지하지 않고 있습니다. 이 부분은 향후 보완되어야 한다고 생각은 하고 있습니다.
 
-## Type Support For `.vue` Imports in TS
-
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
-
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
-
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+데스크탑 앱을 만드는 툴은 electron-forge로 선택했으며 `yarn run make`를 하면 앱을 만들 수 있습니다.

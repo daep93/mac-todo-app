@@ -9,9 +9,9 @@
     "build:preload": "tsc -p packages/preload/tsconfig.json --noEmit && vite build packages/preload",
     "build:main": "tsc -p packages/main/tsconfig.json --noEmit && vite build packages/main",
     "build": "yarn run build:renderer && yarn run build:preload && yarn run build:main",
-    "start:electron": "electron .",
+    "start": "electron .",
     "dev": "cross-env NODE_ENV=development ts-node scripts/dev-server.ts",
-    "start": "electron-forge start",
+    "start:forge": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make"
   },
