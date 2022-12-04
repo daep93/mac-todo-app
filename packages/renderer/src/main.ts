@@ -10,10 +10,13 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 /* import specific icons */
-import { faSquarePlus } from "@fortawesome/free-regular-svg-icons";
-
+import {
+  faSquarePlus,
+  faRectangleList,
+} from "@fortawesome/free-regular-svg-icons";
+import { faDeleteLeft } from "@fortawesome/free-solid-svg-icons";
 /* add icons to the library */
-library.add(faSquarePlus);
+library.add(faSquarePlus, faRectangleList, faDeleteLeft);
 
 const app = createApp(App);
 
