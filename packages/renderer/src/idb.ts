@@ -1,7 +1,7 @@
 import { openDB } from "idb";
 const DB_NAME = "todoDB";
 const STORE_NAME = "todo";
-const dbPromise = await openDB(DB_NAME, 1, {
+const dbPromise = openDB(DB_NAME, 1, {
   upgrade(db: any) {
     db.createObjectStore(STORE_NAME, { autoIncrement: true });
   },
