@@ -16,6 +16,7 @@ onMounted(async () => {
 const registTodo = async (todo: string) => {
   const key = (await add(todo)) as string;
   items.value = [...items.value, { key, text: todo }];
+  new Notification("create new todo", { body: `'${todo}' is created` });
 };
 const deleteTodo = (key: string) => {
   items.value = items.value.filter((item) => item.key !== key);
