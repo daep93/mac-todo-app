@@ -15,7 +15,12 @@ const registTodo = (event: KeyboardEvent) => {
       v-model="text"
       @keydown.enter="registTodo"
     />
-    <button class="bg-slate-200 py-1 px-2 rounded">&#9166;</button>
+    <button
+      class="bg-slate-200 py-1 px-2 rounded"
+      @click="$emit('regist-todo', text)"
+    >
+      &#9166;
+    </button>
   </div>
 </template>
 
