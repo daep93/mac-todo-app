@@ -18,6 +18,6 @@ export async function add(value: any) {
 export async function set(key: string, value: any) {
   return (await dbPromise).put(STORE_NAME, key, value);
 }
-export async function del(key: string) {
+export async function del(key: number) {
   return (await dbPromise).delete(STORE_NAME, key);
 }
