@@ -4,20 +4,15 @@ import dayjs from "dayjs";
 
 const emit = defineEmits(["regist-todo"]);
 const text = ref("");
-const startDate = ref(dayjs().format("YYYY-MM-DD"));
-const startTime = ref("00:00");
 const endDate = ref(dayjs().format("YYYY-MM-DD"));
-const endTime = ref("23:59");
+const endTime = ref("13:00");
+
 const isComposing = (event: KeyboardEvent) => event.isComposing;
 const registTodo = () => {
-  const start = `${startDate.value} ${startTime.value}`;
-  const end = `${endDate.value} ${endTime.value}`;
-  if (!dayjs(start).isBefore(dayjs(end))) {
+  const start = dayjs();
+  const end = dayjs(`${endDate.value} ${endTime.value}`);
+  if (!start.isBefore(end)) {
     alert("시작 시간이 종료 시간보다 빨라야 합니다.");
-    return;
-  }
-  if (!startDate.value) {
-    alert("시작일을 입력해 주세요.");
     return;
   }
   if (!endDate.value) {
@@ -28,19 +23,17 @@ const registTodo = () => {
     alert("할 일을 입력해 주세요.");
     return;
   }
-  emit("regist-todo", { start, end, text: text.value });
+  emit("regist-todo", {
+    start: start.format("YYYY-MM-DD HH:mm"),
+    end: end.format("YYYY-MM-DD HH:mm"),
+    text: text.value,
+  });
 };
 </script>
 
 <template>
   <div>
-    <label class="flex justify-between"
-      >START
-      <input class="outline-0" type="date" v-model="startDate" />
-      <input class="outline-0" type="time" v-model="startTime" />
-    </label>
-    <label class="flex justify-between"
-      >END
+    <label class="flex justify-between">
       <input class="outline-0" type="date" v-model="endDate" />
       <input class="outline-0" type="time" v-model="endTime" />
     </label>
