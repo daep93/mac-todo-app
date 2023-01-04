@@ -1,7 +1,12 @@
 import { join } from "node:path";
 import { app, BrowserWindow } from "electron";
+import isDev from "electron-is-dev";
 
 const isSingleInstance = app.requestSingleInstanceLock();
+
+if (!isDev) {
+  app.setLoginItemSettings({ openAtLogin: true });
+}
 
 if (!isSingleInstance) {
   app.quit();
