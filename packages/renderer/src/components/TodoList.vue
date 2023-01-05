@@ -4,10 +4,15 @@ defineProps({ items: Array<TodoWithKey> });
 </script>
 
 <template>
-  <ul class="p-4">
-    <li v-for="{ text, key } of items" :key="key" class="flex gap-2 items-center">
-      <span>{{ text }}</span>
-      <font-awesome-icon icon="fa-solid fa-delete-left" @click="$emit('delete-todo', key)" />
+  <ul class="py-4">
+    <li v-for="{ text, key, end } of items" :key="key">
+      <h1 class="flex gap-2 items-center justify-between">
+        <span>Due: {{ end }} </span>
+        <font-awesome-icon icon="fa-solid fa-delete-left" @click="$emit('delete-todo', key)" class="cursor-pointer" />
+      </h1>
+      <p>
+        {{ text }}
+      </p>
     </li>
   </ul>
 </template>
