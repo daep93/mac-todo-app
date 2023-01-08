@@ -1,13 +1,23 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import dayjs from "dayjs";
 
-const emit = defineEmits(["regist-todo"]);
+const emit = defineEmits(["regist-todo", "update-date"]);
+const props = defineProps({ selectedDate: { type: String, required: true } });
 const text = ref("");
-const endDate = ref(dayjs().format("YYYY-MM-DD"));
+const endDate = ref(props.selectedDate);
 const endTime = ref("13:00");
-
+watch(
+  () => props.selectedDate,
+  (newSelectedDate: string) => {
+    endDate.value = newSelectedDate;
+  }
+);
 const isComposing = (event: KeyboardEvent) => event.isComposing;
+const updateDate = (newDate: string) => {
+  endDate.value = newDate;
+  emit("update-date", newDate);
+};
 const registTodo = () => {
   const start = dayjs();
   const end = dayjs(`${endDate.value} ${endTime.value}`);
@@ -34,7 +44,12 @@ const registTodo = () => {
 <template>
   <div>
     <label class="flex justify-between">
-      <input class="outline-0" type="date" v-model="endDate" />
+      <input
+        class="outline-0"
+        type="date"
+        :value="endDate"
+        @input="updateDate(($event.target as HTMLInputElement).value)"
+      />
       <input class="outline-0" type="time" v-model="endTime" />
     </label>
     <div class="mt-2 flex gap-2 items-center justify-between">

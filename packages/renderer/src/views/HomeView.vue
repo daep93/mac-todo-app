@@ -46,10 +46,15 @@ const updateSelectedDate = (newDate: string) => {
 
 <template>
   <div class="flex w-full gap-4 flex-wrap justify-center">
-    <FullCalendar :items="store.todos" @select-date="updateSelectedDate" class="max-w-2xl flex-1" />
+    <FullCalendar
+      :items="store.todos"
+      @select-date="updateSelectedDate"
+      :updated-date="selectedDate"
+      class="max-w-2xl flex-1"
+    />
     <div class="max-w-2xl flex-1">
-      <TodoInput @regist-todo="registTodo" :selectedDate="selectedDate" />
-      <TodoList :items="store.todos" @delete-todo="deleteTodo" :selectedDate="selectedDate" />
+      <TodoInput @regist-todo="registTodo" :selected-date="selectedDate" @update-date="updateSelectedDate" />
+      <TodoList :items="store.todos" @delete-todo="deleteTodo" :selected-date="selectedDate" />
     </div>
   </div>
 </template>
