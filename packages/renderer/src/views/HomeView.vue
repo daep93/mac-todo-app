@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
 import dayjs from "dayjs";
 import TodoInput from "../components/TodoInput.vue";
 import TodoList from "../components/TodoList.vue";
 import { useTodosStore, Todo } from "../stores/todos";
-
+import FullCalendar from "../components/FullCalendar.vue";
 const timers: ReturnType<typeof setTimeout>[] = [];
 const store = useTodosStore();
 
@@ -38,11 +38,18 @@ const registTodo = async (todo: Todo) => {
   }
 };
 const deleteTodo = store.deleteTodo;
+const selectedDate = ref(dayjs().format("YYYY-MM-DD"));
+const updateSelectedDate = (newDate: string) => {
+  selectedDate.value = newDate;
+};
 </script>
 
 <template>
-  <div>
-    <TodoInput @regist-todo="registTodo" />
-    <TodoList :items="store.todos" @delete-todo="deleteTodo" />
+  <div class="flex w-full gap-4 flex-wrap justify-center">
+    <FullCalendar :items="store.todos" @select-date="updateSelectedDate" class="max-w-2xl flex-1" />
+    <div class="max-w-2xl flex-1">
+      <TodoInput @regist-todo="registTodo" :selectedDate="selectedDate" />
+      <TodoList :items="store.todos" @delete-todo="deleteTodo" :selectedDate="selectedDate" />
+    </div>
   </div>
 </template>
