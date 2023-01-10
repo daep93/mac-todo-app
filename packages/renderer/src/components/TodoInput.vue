@@ -54,7 +54,7 @@ const registTodo = () => {
     </label>
     <div class="mt-2 flex gap-2 items-center justify-between">
       <input
-        class="border-orange-400 border w-full py-1"
+        class="border-orange-400 border w-full p-1"
         v-model="text"
         @keydown.enter="!isComposing($event) && registTodo()"
       />
